@@ -1,6 +1,7 @@
 FROM ruby:2.6.6
 RUN apt-get update -qq \
-    && apt-get install -y nodejs postgresql-client
+    && apt-get install -y nodejs postgresql-client \
+    && gem install bundler
 RUN mkdir -p /shopping-list/api
 WORKDIR /shopping-list/api
 COPY Gemfile* /shopping-list/api/
