@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_154754) do
+ActiveRecord::Schema.define(version: 2020_05_04_120708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,16 @@ ActiveRecord::Schema.define(version: 2020_02_25_154754) do
     t.index ["global_id"], name: "index_products_on_global_id", unique: true
   end
 
+  create_table "shopping_list_categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "color", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "shopping_list_items", force: :cascade do |t|
     t.integer "qty_to_buy"
+    t.boolean "bought", default: false
     t.bigint "store_product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -36,9 +44,12 @@ ActiveRecord::Schema.define(version: 2020_02_25_154754) do
 
   create_table "shopping_lists", force: :cascade do |t|
     t.string "name"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.bigint "shopping_list_category_id"
+    t.index ["shopping_list_category_id"], name: "index_shopping_lists_on_shopping_list_category_id"
     t.index ["user_id"], name: "index_shopping_lists_on_user_id"
   end
 
@@ -74,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_154754) do
 
   add_foreign_key "shopping_list_items", "shopping_lists"
   add_foreign_key "shopping_list_items", "store_products"
+  add_foreign_key "shopping_lists", "shopping_list_categories"
   add_foreign_key "shopping_lists", "users"
   add_foreign_key "store_products", "products"
   add_foreign_key "store_products", "stores"
