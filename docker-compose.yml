@@ -11,13 +11,17 @@ services:
     ports:
       - "5432:5432"
   api:
-    build: ./
+    build:
+      context: ./
+      args:
+        USER_ID: $USER_ID
+        GROUP_ID: $GROUP_ID
     container_name: api
     stdin_open: true
     tty: true
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
     volumes:
-      - ./:/shopping-list/api
+      - ./:/usr/shopping-list/api
     ports:
       - "4000:4000"
     depends_on:
