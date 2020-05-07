@@ -43,7 +43,7 @@ module Api
     end
 
     def shopping_list_params
-      params.permit(:name, :description, :shopping_list_category_id)
+      params.permit(:name, :description, :category_id, :shopping_list_category_id)
     end
   end
 end

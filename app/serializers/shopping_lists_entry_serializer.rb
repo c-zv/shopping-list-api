@@ -1,6 +1,5 @@
 class ShoppingListsEntrySerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :num_bought_items, :num_missing_items, :num_stores
-  belongs_to :category
+  attributes :id, :name, :description, :category_id, :num_bought_items, :num_missing_items, :num_stores
 
   def num_bought_items
     num_bought = 0
