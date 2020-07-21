@@ -4,7 +4,7 @@ module Api
 
     def index
       shop_lists = ShoppingList.all.to_a
-      render json: shop_lists, status: :ok, each_serializer: ShoppingListsEntrySerializer
+      render json: shop_lists, status: :ok, each_serializer: ShoppingListsIndexSerializer
       # example of response with error:
       # render json: {error: 'Test error message'}, status: :internal_server_error, each_serializer: ShoppingListsEntrySerializer
     end

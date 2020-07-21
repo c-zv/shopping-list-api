@@ -1,4 +1,4 @@
-class ShoppingListsEntrySerializer < ActiveModel::Serializer
+class ShoppingListsIndexSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :category_id, :num_bought_items, :num_missing_items, :num_stores
 
   def num_bought_items
