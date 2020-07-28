@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace 'api' do
+    resources :store_products, only: [:index, :show]
+    resources :shopping_lists do 
+      resources :items, only: [:create, :update, :destroy], controller: 'shopping_list_items'
+      member do
+        put 'add_item'
+      end
+    end
+    resources :categories, only: [:index, :show], controller: 'shopping_list_categories'
+    resources :stores, only: [:index]
+  end
 end
