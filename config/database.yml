@@ -75,3 +75,4 @@ test:
 production:
   <<: *default
   database: shopping_list_production
+  url: <%= ENV['DATABASE_URL'] %>
