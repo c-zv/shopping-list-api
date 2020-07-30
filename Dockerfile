@@ -2,6 +2,8 @@ FROM ruby:2.6.6
 
 ARG USER_ID
 ARG GROUP_ID
+ARG ENVIRONMENT_ARG=development
+ENV ENVIRONMENT=$ENVIRONMENT_ARG
 
 # create new user and group
 RUN addgroup --gid $GROUP_ID group
@@ -28,6 +30,6 @@ RUN chown -R user:group /usr/shopping-list
 USER user
 
 ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+EXPOSE ${PORT}
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD rails server -e $ENVIRONMENT -b 0.0.0.0 -p $PORT

@@ -7,12 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 num_products = 20
-num_stores = 3
+num_stores = 4
 num_shop_lists = 4
 
 num_stores.times do
   Store.create({
-    name: Faker::Company.name,
+    name: Faker::Restaurant.name,
     city: Faker::Address.city,
     country: Faker::Address.country,
     address: Faker::Address.street_address

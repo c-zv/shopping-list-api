@@ -19,11 +19,11 @@ services:
     container_name: api
     stdin_open: true
     tty: true
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p ${PORT} -b '0.0.0.0'"
     volumes:
       - ./:/usr/shopping-list/api
     ports:
-      - "4000:4000"
+      - "${PORT}:${PORT}"
     depends_on:
       - postgres-db
     env_file:
