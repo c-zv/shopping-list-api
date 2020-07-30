@@ -14,12 +14,17 @@ module Api
     end
 
     def create
-      shop_list = ShoppingList.new(shopping_list_params)
-      shop_list.user = User.first
-      if shop_list.save
-        render json: shop_list, status: :ok
+      if ShoppingList.count > 20
+        msg = 'Due to storage restrictions, maximum number of shopping lists is limited to 20'
+        render json: {error: msg}, status: :internal_server_error
       else
-        render status: :internal_server_error
+        shop_list = ShoppingList.new(shopping_list_params)
+        shop_list.user = User.first
+        if shop_list.save
+          render json: shop_list, status: :ok
+        else
+          render status: :internal_server_error
+        end
       end
     end
 
