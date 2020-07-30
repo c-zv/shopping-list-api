@@ -1,24 +1,4 @@
-# README
+# Shopping list API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Introduction
+This project was created in Ruby on Rails for learning purposes to provide the API for [Shopping List Web Application](https://github.com/c-zv/shopping-list-webapp). The project is build in Docker for development and production environments.
